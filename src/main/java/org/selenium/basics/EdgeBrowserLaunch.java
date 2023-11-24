@@ -1,15 +1,14 @@
-package basics;
+package org.selenium.basics;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class FireFoxBrowserLaunch {
+public class EdgeBrowserLaunch {
     public static void main(String[] args) {
         WebDriver driver;
-        driver = new FirefoxDriver();
+        driver = new EdgeDriver();
         driver.manage().window().maximize();
-        driver.get("https://www.saucedemo.com/");
+        driver.get("https://demo.guru99.com/test/newtours/");
         String pageTitle =driver.getTitle();
         System.out.println(pageTitle);
         String currentURL=driver.getCurrentUrl();
