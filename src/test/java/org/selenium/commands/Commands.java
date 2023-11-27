@@ -35,9 +35,9 @@ public class Commands extends Base {
         passwordField.sendKeys("Simple@123");
         WebElement loginButton = driver.findElement(By.className("login-button"));
         loginButton.click();
-        String actualURL=driver.getCurrentUrl();
-        String expectedLoginUrl="https://demowebshop.tricentis.com/";
-        Assert.assertEquals(actualURL,expectedLoginUrl,"Invalid Url found in Login page");
-
+        WebElement actualUserLoginElement=driver.findElement(By.className("account"));
+        String actualId= actualUserLoginElement.getText();
+        String expectedLoginId="vinithaedwin.test@gmail.com";
+        Assert.assertEquals(actualId,expectedLoginId,"User Login failed");
     }
 }
