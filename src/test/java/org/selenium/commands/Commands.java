@@ -40,4 +40,30 @@ public class Commands extends Base {
         String expectedLoginId="vinithaedwin.test@gmail.com";
         Assert.assertEquals(actualId,expectedLoginId,"User Login failed");
     }
+    @Test
+    public void verifyDemoToursRegistration(){
+        driver.get("https://demo.guru99.com/test/newtours/register.php");
+        WebElement firstNameField = driver.findElement(By.name("firstName"));
+        firstNameField.sendKeys("Vinitha");
+        WebElement lastNameField = driver.findElement(By.name("lastName"));
+        lastNameField.sendKeys("Edwin");
+        WebElement phoneField = driver.findElement(By.name("phone"));
+        phoneField.sendKeys("9105956123");
+        WebElement emailField = driver.findElement(By.id("userName"));
+        emailField.sendKeys("vinithaedwin.test@gmail.com");
+        WebElement address1Field = driver.findElement(By.name("address1"));
+        address1Field.sendKeys("Kazhakuttom");
+        WebElement cityField = driver.findElement(By.name("city"));
+        cityField.sendKeys("Thiruvananthapuram");
+        WebElement stateField = driver.findElement(By.name("state"));
+        stateField.sendKeys("Kerala");
+        WebElement emailUserField = driver.findElement(By.id("email"));
+        emailUserField.sendKeys("vinithaedwin.test@gmail.com");
+        WebElement passwordField = driver.findElement(By.name("password"));
+        passwordField.sendKeys("Simple@123");
+        WebElement confirmPasswordField = driver.findElement(By.name("confirmPassword"));
+        confirmPasswordField.sendKeys("Simple@123");
+        WebElement submitButton = driver.findElement(By.name("submit"));
+       // submitButton.click();
+    }
 }
