@@ -23,7 +23,7 @@ public class VegetablePriceCalculator {
     // Class representing a vegetable with name and price
     static class Vegetable {
         private String name;
-        private double price;
+        private  double price;
 
         public Vegetable(String name, double price) {
             this.name = name;

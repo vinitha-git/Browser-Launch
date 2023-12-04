@@ -10,9 +10,7 @@ public class AddData {
         vegetables.add("Keera");
         vegetables.add("Cucumber");
         vegetables.add("Tomato");
-
         return vegetables;
-
     }
 
     public static void main(String[] args) {

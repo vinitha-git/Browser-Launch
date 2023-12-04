@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class Commands extends Base {
     @Test
     public void verifySwagLabsUserLogin() {
@@ -112,4 +114,30 @@ public class Commands extends Base {
         String expectedLoginId = "vinithaedwin.test@gmail.com";
         Assert.assertEquals(actualId, expectedLoginId, "User Login failed");
     }
+   @Test
+    public void validateTotalNoOfTags()
+    {
+        driver.get("https://demowebshop.tricentis.com/");
+        List<WebElement> tag= driver.findElements(By.tagName("Input"));
+        System.out.println(tag.size());
+    }
+
+    @Test
+    public void verifyNavigationCommands()
+    {
+        driver.get("https://demowebshop.tricentis.com/");
+        WebElement element = driver.findElement(By.xpath("//a[@class='ico-register']"));
+        element.click();
+        driver.navigate().back();
+        driver.navigate().forward();
+        WebElement firstNameElement = driver.findElement(By.xpath("//input[@name='FirstName']"));
+        firstNameElement.sendKeys("Vinitha");
+        WebElement lastNameElement = driver.findElement(By.xpath("//input[@name='LastName']"));
+        lastNameElement.sendKeys("Edwin");
+        WebElement emailElement = driver.findElement(By.xpath("//input[@name='Email']"));
+        emailElement.sendKeys("vinithaedwin@gmail.com");
+        driver.navigate().refresh();
+        driver.navigate().to("https://www.google.com/");
+    }
+
 }
