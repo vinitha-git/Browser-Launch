@@ -76,16 +76,18 @@ public class Commands extends Base {
         WebElement element = driver.findElement(By.linkText("your destination"));
         element.click();
     }
+
     @Test
-    public void verifyPartialLinkTest(){
+    public void verifyPartialLinkTest() {
         driver.get("https://demo.guru99.com/test/newtours/");
         WebElement element = driver.findElement(By.partialLinkText("destination"));
         element.click();
     }
+
     @Test
-    public void verifyDemoWebShopUserLoginUsingXpath(){
+    public void verifyDemoWebShopUserLoginUsingXpath() {
         driver.get("https://demowebshop.tricentis.com/");
-        WebElement loginField= driver.findElement(By.xpath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a"));
+        WebElement loginField = driver.findElement(By.xpath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a"));
         loginField.click();
         WebElement emailField = driver.findElement(By.xpath("//*[@id='Email']"));
         emailField.sendKeys("vinithaedwin.test@gmail.com");
@@ -98,10 +100,11 @@ public class Commands extends Base {
         String expectedLoginId = "vinithaedwin.test@gmail.com";
         Assert.assertEquals(actualId, expectedLoginId, "User Login failed");
     }
+
     @Test
-    public void verifyDemoWebShopUserLoginUsingCssSelector(){
+    public void verifyDemoWebShopUserLoginUsingCssSelector() {
         driver.get("https://demowebshop.tricentis.com/");
-        WebElement loginField= driver.findElement(By.cssSelector("body > div.master-wrapper-page > div.master-wrapper-content > div.header > div.header-links-wrapper > div.header-links > ul > li:nth-child(2) > a"));
+        WebElement loginField = driver.findElement(By.cssSelector("body > div.master-wrapper-page > div.master-wrapper-content > div.header > div.header-links-wrapper > div.header-links > ul > li:nth-child(2) > a"));
         loginField.click();
         WebElement emailField = driver.findElement(By.cssSelector("#Email"));
         emailField.sendKeys("vinithaedwin.test@gmail.com");
@@ -114,17 +117,16 @@ public class Commands extends Base {
         String expectedLoginId = "vinithaedwin.test@gmail.com";
         Assert.assertEquals(actualId, expectedLoginId, "User Login failed");
     }
-   @Test
-    public void validateTotalNoOfTags()
-    {
+
+    @Test
+    public void validateTotalNoOfTags() {
         driver.get("https://demowebshop.tricentis.com/");
-        List<WebElement> tag= driver.findElements(By.tagName("Input"));
+        List<WebElement> tag = driver.findElements(By.tagName("Input"));
         System.out.println(tag.size());
     }
 
     @Test
-    public void verifyNavigationCommands()
-    {
+    public void verifyNavigationCommands() {
         driver.get("https://demowebshop.tricentis.com/");
         WebElement element = driver.findElement(By.xpath("//a[@class='ico-register']"));
         element.click();
@@ -140,4 +142,26 @@ public class Commands extends Base {
         driver.navigate().to("https://www.google.com/");
     }
 
+    @Test
+    public void verifyIsSelected(){
+        boolean isMaleSelected;
+        driver.get("https://demowebshop.tricentis.com/register");
+        WebElement maleElement = driver.findElement(By.xpath("//input[@id='gender-male']"));
+        isMaleSelected= maleElement.isSelected();
+        Assert.assertFalse(isMaleSelected,"Male radio button is selected");
+        System.out.println("Gender Male Before Selection "+isMaleSelected);
+        maleElement.click();
+        isMaleSelected= maleElement.isSelected();
+        Assert.assertTrue(isMaleSelected,"Male radio button is not selected ");
+        System.out.println("Gender Male After Selection "+isMaleSelected);
+
+    }
+    @Test
+    public void verifyIsEnabled(){
+        driver.get("https://demowebshop.tricentis.com/");//
+        WebElement subscribeElement = driver.findElement(By.xpath("//input[@id='newsletter-subscribe-button']"));
+        //https://selenium.obsqurazone.com/index.php
+    }
 }
+
+
