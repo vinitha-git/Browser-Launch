@@ -158,10 +158,32 @@ public class Commands extends Base {
     }
     @Test
     public void verifyIsEnabled(){
-        driver.get("https://demowebshop.tricentis.com/");//
+        driver.get("https://demowebshop.tricentis.com/");
         WebElement subscribeElement = driver.findElement(By.xpath("//input[@id='newsletter-subscribe-button']"));
-        //https://selenium.obsqurazone.com/index.php
+        boolean isSubscribeEnabled=subscribeElement.isEnabled();
+        Assert.assertTrue(isSubscribeEnabled,"subscribe button is not enabled");
     }
+    @Test
+    public void verifyIsDisplayed()
+    {
+        driver.get("https://demowebshop.tricentis.com/");
+        WebElement voteElement = driver.findElement(By.xpath("//input[@id='vote-poll-1']"));
+        boolean isVoteDisplayed=voteElement.isDisplayed();
+        Assert.assertTrue(isVoteDisplayed,"vote button is not diaslayed");
+    }
+    @Test
+    public void verifyCommunityPoll(){
+        driver.get("https://demowebshop.tricentis.com/");
+        List<WebElement> communityPollElements = driver.findElements(By.tagName("Label"));
+        for (WebElement i : communityPollElements) {
+            String s= i.getText();
+            if(s.equals("Poor")) {
+                System.out.println(i.getText());
+                i.click();
+            }
+        }
+    }
+
 }
 
 
