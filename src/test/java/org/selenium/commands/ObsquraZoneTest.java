@@ -114,6 +114,12 @@ public void verifyFormWithValidation(){
 
     WebElement submitElement = driver.findElement(By.xpath("//button[@type='submit']"));
     submitElement.click();
+    WebElement messageElement = driver.findElement(By.xpath("//div[@id='message-one']"));
+    String actualMessageResult=messageElement.getText();
+    String expectedMResult="Form has been submitted successfully!";
+    Assert.assertEquals(actualMessageResult,expectedMResult,"Form is not submitted successfully");
+
+
 
 
 
