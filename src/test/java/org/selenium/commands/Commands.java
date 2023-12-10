@@ -2,6 +2,7 @@ package org.selenium.commands;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -143,46 +144,69 @@ public class Commands extends Base {
     }
 
     @Test
-    public void verifyIsSelected(){
+    public void verifyIsSelected() {
         boolean isMaleSelected;
         driver.get("https://demowebshop.tricentis.com/register");
         WebElement maleElement = driver.findElement(By.xpath("//input[@id='gender-male']"));
-        isMaleSelected= maleElement.isSelected();
-        Assert.assertFalse(isMaleSelected,"Male radio button is selected");
-        System.out.println("Gender Male Before Selection "+isMaleSelected);
+        isMaleSelected = maleElement.isSelected();
+        Assert.assertFalse(isMaleSelected, "Male radio button is selected");
+        System.out.println("Gender Male Before Selection " + isMaleSelected);
         maleElement.click();
-        isMaleSelected= maleElement.isSelected();
-        Assert.assertTrue(isMaleSelected,"Male radio button is not selected ");
-        System.out.println("Gender Male After Selection "+isMaleSelected);
+        isMaleSelected = maleElement.isSelected();
+        Assert.assertTrue(isMaleSelected, "Male radio button is not selected ");
+        System.out.println("Gender Male After Selection " + isMaleSelected);
 
     }
+
     @Test
-    public void verifyIsEnabled(){
+    public void verifyIsEnabled() {
         driver.get("https://demowebshop.tricentis.com/");
         WebElement subscribeElement = driver.findElement(By.xpath("//input[@id='newsletter-subscribe-button']"));
-        boolean isSubscribeEnabled=subscribeElement.isEnabled();
-        Assert.assertTrue(isSubscribeEnabled,"subscribe button is not enabled");
+        boolean isSubscribeEnabled = subscribeElement.isEnabled();
+        Assert.assertTrue(isSubscribeEnabled, "subscribe button is not enabled");
     }
+
     @Test
-    public void verifyIsDisplayed()
-    {
+    public void verifyIsDisplayed() {
         driver.get("https://demowebshop.tricentis.com/");
         WebElement voteElement = driver.findElement(By.xpath("//input[@id='vote-poll-1']"));
-        boolean isVoteDisplayed=voteElement.isDisplayed();
-        Assert.assertTrue(isVoteDisplayed,"vote button is not diaslayed");
+        boolean isVoteDisplayed = voteElement.isDisplayed();
+        Assert.assertTrue(isVoteDisplayed, "vote button is not diaslayed");
     }
+
     @Test
-    public void verifyCommunityPoll(){
+    public void verifyCommunityPoll() {
         driver.get("https://demowebshop.tricentis.com/");
-        List<WebElement> communityPollElements = driver.findElements(By.tagName("Label"));
+        // List<WebElement> communityPollElements = driver.findElements(By.tagName("Label"));
+        List<WebElement> communityPollElements = driver.findElements(By.xpath("//li[@class='answer']//label[starts-with(@for,'pollanswers')]"));
         for (WebElement i : communityPollElements) {
-            String s= i.getText();
-            if(s.equals("Poor")) {
-                System.out.println(i.getText());
+            String s = i.getText();
+            if (s.equals("Poor")) {
                 i.click();
             }
         }
     }
+
+    @Test
+    public void verifyValueSelectFromDropDown() {
+        driver.get("https://demo.guru99.com/test/newtours/register.php");
+        WebElement countryElement= driver.findElement(By.xpath("//select[@name='country']"));
+        Select select = new Select(countryElement);
+        // select.selectByVisibleText("INDIA");
+        //select.selectByIndex(23);
+        select.selectByValue("IRAQ");
+        WebElement selectedCountry = select.getFirstSelectedOption();
+        System.out.println( selectedCountry.getText());
+   }
+   @Test
+    public void verifyTotalNoOfDropDownValuesInUI(){
+       driver.get("https://demo.guru99.com/test/newtours/register.php");
+       WebElement countryElement= driver.findElement(By.xpath("//select[@name='country']"));
+       Select select= new Select(countryElement);
+       List<WebElement> dropDownValues= select.getOptions();
+       System.out.println(dropDownValues.size());
+     }
+
 
 }
 

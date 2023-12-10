@@ -2,8 +2,12 @@ package org.selenium.commands;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ObsquraZoneTest extends Base{
 
@@ -83,7 +87,7 @@ public class ObsquraZoneTest extends Base{
     }
 
 @Test
-public void verifyFormWithValidation(){
+public void verifyFormWithValidation() {
     driver.get("https://selenium.obsqurazone.com/form-submit.php");
     WebElement firstNameElement = driver.findElement(By.xpath("//input[@id='validationCustom01']"));
     firstNameElement.sendKeys("test");
@@ -106,22 +110,59 @@ public void verifyFormWithValidation(){
 
     boolean isSelected;
     WebElement checkBoxElement = driver.findElement(By.xpath("//input[@id='invalidCheck']"));
-    isSelected= checkBoxElement.isSelected();
-    Assert.assertFalse(isSelected," Check box is selected");
+    isSelected = checkBoxElement.isSelected();
+    Assert.assertFalse(isSelected, " Check box is selected");
     checkBoxElement.click();
-    isSelected= checkBoxElement.isSelected();
-    Assert.assertTrue(isSelected,"Check box is not selected ");
+    isSelected = checkBoxElement.isSelected();
+    Assert.assertTrue(isSelected, "Check box is not selected ");
 
     WebElement submitElement = driver.findElement(By.xpath("//button[@type='submit']"));
     submitElement.click();
     WebElement messageElement = driver.findElement(By.xpath("//div[@id='message-one']"));
-    String actualMessageResult=messageElement.getText();
-    String expectedMResult="Form has been submitted successfully!";
-    Assert.assertEquals(actualMessageResult,expectedMResult,"Form is not submitted successfully");
-
-
-
-
-
+    String actualMessageResult = messageElement.getText();
+    String expectedMResult = "Form has been submitted successfully!";
+    Assert.assertEquals(actualMessageResult, expectedMResult, "Form is not submitted successfully");
 }
+    @Test
+    public void verifyColorSelectFromDropDown(){
+        driver.get("https://selenium.obsqurazone.com/select-input.php");
+        WebElement colorElement= driver.findElement(By.xpath("//select[@id='single-input-field']"));
+        Select select = new Select(colorElement);
+        select.selectByVisibleText("Red");
+        WebElement selectedColor = select.getFirstSelectedOption();
+        String actualResult= selectedColor.getText();
+        WebElement msgElement= driver.findElement(By.xpath("//div[@id='message-one']"));
+        String[] split_message=msgElement.getText().split(": ");
+        String expectedResult= split_message[1];
+        Assert.assertEquals(actualResult,expectedResult,"Invalid selection");
+    }
+    @Test
+    public void verifyTotalNoOfValuesInDropDown(){
+        driver.get("https://selenium.obsqurazone.com/select-input.php");
+        WebElement colorElement= driver.findElement(By.xpath("//select[@id='single-input-field']"));
+        Select select = new Select(colorElement);
+        List<WebElement> options= select.getOptions();
+        int expectedCount =4;
+        int actualCount= options.size();
+        Assert.assertEquals(actualCount,expectedCount,"Invalid size");
+    }
+    @Test
+    public void verifyValuesInColorSelectDropDown(){
+        driver.get("https://selenium.obsqurazone.com/select-input.php");
+        WebElement colorElement= driver.findElement(By.xpath("//select[@id='single-input-field']"));
+        Select select = new Select(colorElement);
+        List<WebElement> options= select.getOptions();
+        List<String> actual= new ArrayList<>();
+        for (WebElement e :options)
+        {
+            String element= e.getText();
+            actual.add(element);
+        }
+        List<String> expected= new ArrayList<>();
+        expected.add("-- Select --");
+        expected.add("Red");
+        expected.add("Yellow") ;
+        expected.add("Green");
+        Assert.assertEquals(actual,expected,"Invalid Data");
+    }
 }
