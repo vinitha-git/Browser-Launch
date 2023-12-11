@@ -165,4 +165,13 @@ public void verifyFormWithValidation() {
         expected.add("Green");
         Assert.assertEquals(actual,expected,"Invalid Data");
     }
+    @Test
+    public void verifyDropDownWithoutSelect(){
+        driver.get("https://selenium.obsqurazone.com/select-input.php");
+        WebElement colorElement= driver.findElement(By.xpath("//select[@id='single-input-field']"));
+        colorElement.click();
+        String optionToSelect="Green";
+        WebElement optionElement= driver.findElement(By.xpath("//option[text()='"+ optionToSelect +"']"));
+        optionElement.click();
+    }
 }

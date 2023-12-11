@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 public class Commands extends Base {
@@ -190,24 +192,54 @@ public class Commands extends Base {
     @Test
     public void verifyValueSelectFromDropDown() {
         driver.get("https://demo.guru99.com/test/newtours/register.php");
-        WebElement countryElement= driver.findElement(By.xpath("//select[@name='country']"));
+        WebElement countryElement = driver.findElement(By.xpath("//select[@name='country']"));
         Select select = new Select(countryElement);
         // select.selectByVisibleText("INDIA");
         //select.selectByIndex(23);
         select.selectByValue("IRAQ");
         WebElement selectedCountry = select.getFirstSelectedOption();
-        System.out.println( selectedCountry.getText());
-   }
-   @Test
-    public void verifyTotalNoOfDropDownValuesInUI(){
-       driver.get("https://demo.guru99.com/test/newtours/register.php");
-       WebElement countryElement= driver.findElement(By.xpath("//select[@name='country']"));
-       Select select= new Select(countryElement);
-       List<WebElement> dropDownValues= select.getOptions();
-       System.out.println(dropDownValues.size());
-     }
+        System.out.println(selectedCountry.getText());
+    }
 
+    @Test
+    public void verifyTotalNoOfDropDownValuesInUI() {
+        driver.get("https://demo.guru99.com/test/newtours/register.php");
+        WebElement countryElement = driver.findElement(By.xpath("//select[@name='country']"));
+        Select select = new Select(countryElement);
+        List<WebElement> dropDownValues = select.getOptions();
+        System.out.println(dropDownValues.size());
+    }
 
+    @Test
+    public void verifySeleniumCommands() {
+        driver.get("https://www.tutorialspoint.com/selenium/selenium_automation_practice.htm");
+        WebElement seleniumElement = driver.findElement(By.xpath("//select[@name='selenium_commands']"));
+        Select select = new Select(seleniumElement);
+        boolean isMultiple=select.isMultiple();
+        System.out.println(isMultiple);
+        select.selectByVisibleText("Browser Commands");
+        select.selectByVisibleText("sSwitch Command");
+
+        List<WebElement> multiselectOptions = select.getAllSelectedOptions();
+        for (WebElement e :multiselectOptions)
+        {
+            String element= e.getText();
+            System.out.println(element);
+        }
+        //select.deselectAll();
+        select.deselectByValue("Switch Command");
+    }
+    @Test
+    public void verifyFileUpload(){
+        driver.get("https://demo.guru99.com/test/upload/");
+        WebElement fileUploadElement = driver.findElement(By.xpath("//input[@id='uploadfile_0']"));
+        String filepath =new File("src/main/resources/selenium.docx").getAbsolutePath();
+        fileUploadElement.sendKeys(filepath);
+        WebElement termsElement = driver.findElement(By.xpath("//input[@id='terms']"));
+        termsElement.click();
+        WebElement submitElement = driver.findElement(By.xpath("//button[@id='submitbutton']"));
+        submitElement.click();
+    }
 }
 
 
