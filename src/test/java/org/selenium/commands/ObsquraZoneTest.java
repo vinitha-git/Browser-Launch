@@ -166,14 +166,17 @@ public void verifyFormWithValidation() {
         Assert.assertEquals(actual,expected,"Invalid Data");
     }
     @Test
-    public void verifyDropDownWithoutSelect(){
+    public void verifyDropDownWithoutSelect() {
         driver.get("https://selenium.obsqurazone.com/jquery-select.php");
-        WebElement stateElement= driver.findElement(By.xpath("/html/body/section/div/div/div[2]/div[1]/div/div[2]/form/div/span"));
-
-        stateElement.click();
-     /*String optionToSelect="Green";
-        WebElement optionElement= driver.findElement(By.xpath("//option[text()='"+ optionToSelect +"']"));
-        optionElement.click();*/
-
+        WebElement stateDropDown=driver.findElement(By.xpath("//span[@class='select2-selection select2-selection--single']//span[@class='select2-selection__arrow']"));
+        stateDropDown.click();
+        List<WebElement> DropDownWithoutSelect = driver.findElements(By.xpath("//li[contains(@class,'select2-results__option select2-results__option--selectable')]"));
+        for (WebElement dropDownValueElements :DropDownWithoutSelect ) {
+            String selectedState = dropDownValueElements.getText();
+            if (selectedState.equals("California")) {
+                dropDownValueElements.click();
+                break;
+            }
+        }
     }
 }
