@@ -1,5 +1,6 @@
 package org.selenium.commands;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -215,31 +216,96 @@ public class Commands extends Base {
         driver.get("https://www.tutorialspoint.com/selenium/selenium_automation_practice.htm");
         WebElement seleniumElement = driver.findElement(By.xpath("//select[@name='selenium_commands']"));
         Select select = new Select(seleniumElement);
-        boolean isMultiple=select.isMultiple();
+        boolean isMultiple = select.isMultiple();
         System.out.println(isMultiple);
         select.selectByVisibleText("Browser Commands");
         select.selectByVisibleText("sSwitch Command");
 
         List<WebElement> multiselectOptions = select.getAllSelectedOptions();
-        for (WebElement e :multiselectOptions)
-        {
-            String element= e.getText();
+        for (WebElement e : multiselectOptions) {
+            String element = e.getText();
             System.out.println(element);
         }
         //select.deselectAll();
         select.deselectByValue("Switch Command");
     }
+
     @Test
-    public void verifyFileUpload(){
+    public void verifyFileUpload() {
         driver.get("https://demo.guru99.com/test/upload/");
         WebElement fileUploadElement = driver.findElement(By.xpath("//input[@id='uploadfile_0']"));
-        String filepath =new File("src/main/resources/selenium.docx").getAbsolutePath();
+        String filepath = new File("src/main/resources/selenium.docx").getAbsolutePath();
         fileUploadElement.sendKeys(filepath);
         WebElement termsElement = driver.findElement(By.xpath("//input[@id='terms']"));
         termsElement.click();
         WebElement submitElement = driver.findElement(By.xpath("//button[@id='submitbutton']"));
         submitElement.click();
     }
+
+    @Test
+    public void verifySubscribeButtonText() {
+        driver.get("https://demowebshop.tricentis.com/");
+        WebElement subscribeElement = driver.findElement(By.id("newsletter-subscribe-button"));
+        String actual = subscribeElement.getAttribute("value");
+        String expected = "Subscribe";
+        Assert.assertEquals(actual, expected, "Invalid Subscribe button text found");
+    }
+
+    @Test
+    public void validateSimpleAlert() {
+        driver.get("https://demoqa.com/alerts");
+        WebElement clickMeElement = driver.findElement(By.id("alertButton"));
+        clickMeElement.click();
+        Alert alert = driver.switchTo().alert();
+        String actual = alert.getText();
+        String expected = "You clicked a button";
+        Assert.assertEquals(actual, expected, "Button is not clicked");
+        alert.accept();
+    }
+
+    @Test
+    public void validateConfirmButton() {
+        driver.get("https://demoqa.com/alerts");
+        WebElement clickElement = driver.findElement(By.id("confirmButton"));
+        clickElement.click();
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
+        WebElement confirmResult = driver.findElement(By.id("confirmResult"));
+        String actual = confirmResult.getText();
+        Assert.assertEquals(actual, "You selected Cancel", "Invalid alert found");
+
+    }
+
+    @Test
+    public void validatePromptButton() {
+        driver.get("https://demoqa.com/alerts");
+        WebElement clickElement = driver.findElement(By.id("promtButton"));
+        clickElement.click();
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys("Vinitha");
+        alert.accept();
+
+        WebElement promptResult = driver.findElement(By.id("promptResult"));
+        String actual = promptResult.getText();
+        Assert.assertEquals(actual, "You entered Vinitha", "Invalid alert found");
+        //https://www.geeksforgeeks.org/set-iterator-method-in-java-with-examples/
+    }
+
+    @Test
+    public void verifyCustomerDelete() {
+        driver.get(" https://demo.guru99.com/test/delete_customer.php");
+        WebElement idElement = driver.findElement(By.name("cusid"));
+        idElement.sendKeys("12345");
+        WebElement submitElement = driver.findElement(By.name("submit"));
+        submitElement.click();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        String actual = alert.getText();
+        String expected = "Customer Successfully Delete!";
+        Assert.assertEquals(actual, expected, "Customer not deleted");
+        alert.accept();
+    }
+
 }
 
 

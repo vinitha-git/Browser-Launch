@@ -167,11 +167,13 @@ public void verifyFormWithValidation() {
     }
     @Test
     public void verifyDropDownWithoutSelect(){
-        driver.get("https://selenium.obsqurazone.com/select-input.php");
-        WebElement colorElement= driver.findElement(By.xpath("//select[@id='single-input-field']"));
-        colorElement.click();
-        String optionToSelect="Green";
+        driver.get("https://selenium.obsqurazone.com/jquery-select.php");
+        WebElement stateElement= driver.findElement(By.xpath("/html/body/section/div/div/div[2]/div[1]/div/div[2]/form/div/span"));
+
+        stateElement.click();
+     /*String optionToSelect="Green";
         WebElement optionElement= driver.findElement(By.xpath("//option[text()='"+ optionToSelect +"']"));
-        optionElement.click();
+        optionElement.click();*/
+
     }
 }
