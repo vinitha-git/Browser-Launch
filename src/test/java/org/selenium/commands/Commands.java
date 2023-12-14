@@ -9,7 +9,9 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class Commands extends Base {
     @Test
@@ -305,6 +307,36 @@ public class Commands extends Base {
         Assert.assertEquals(actual, expected, "Customer not deleted");
         alert.accept();
     }
+
+    @Test
+    public void verifyMultipleWindowHAndling(){
+        driver.get(" https://demo.guru99.com/popup.php");
+        String parentWindowHandleId= driver.getWindowHandle();
+        System.out.println(parentWindowHandleId);
+        WebElement submitElement = driver.findElement(By.linkText("Click Here"));
+        submitElement.click();
+        Set<String> windowHandleIDs=driver.getWindowHandles();
+        System.out.println(windowHandleIDs);
+        Iterator<String> value = windowHandleIDs.iterator();
+        while( value.hasNext())
+        {
+            String handleId= value.next();
+            if(!handleId.equals(parentWindowHandleId)) {
+                System.out.println("Parent window of child window "+handleId);
+                driver.switchTo().window(handleId);
+                WebElement emailIdElement = driver.findElement(By.xpath("//input[@name='emailid']"));
+                emailIdElement.sendKeys("vinithaedwin.test@gmail.com");
+                WebElement submitBtnElement = driver.findElement(By.xpath("//input[@name='btnLogin']"));
+                submitBtnElement.click();
+                driver.close();
+            }
+        }
+        driver.switchTo().window(parentWindowHandleId);
+        
+
+
+    }
+
 
 }
 
