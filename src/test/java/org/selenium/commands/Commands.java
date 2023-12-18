@@ -3,6 +3,7 @@ package org.selenium.commands;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -332,11 +333,66 @@ public class Commands extends Base {
             }
         }
         driver.switchTo().window(parentWindowHandleId);
-        
-
-
+    }
+    @Test
+    public void verifyFrames() {
+        driver.get("https://demoqa.com/frames");
+        List<WebElement> iframeTags = driver.findElements(By.tagName("iframe"));
+        int size = iframeTags.size();
+        System.out.println("Total No of iframes in the webpage is " + size);
+        //driver.switchTo().frame(3);
+        //driver.switchTo().frame("frame1");
+        WebElement frame = driver.findElement(By.id("frame1"));
+        driver.switchTo().frame(frame);
+        WebElement frameText = driver.findElement(By.id("sampleHeading"));
+        System.out.println("iframe text = " + frameText.getText());
+        driver.switchTo().defaultContent();
     }
 
+    @Test
+    public void verifyRightClick() {
+        driver.get("https://demo.guru99.com/test/simple_context_menu.html");
+        WebElement rightClickButton = driver.findElement(By.xpath("//span[@class='context-menu-one btn btn-neutral']"));
+        Actions action = new Actions(driver);
+        action.contextClick(rightClickButton).build().perform();
+    }
+
+    @Test
+    public void verifyDoubleClick() {
+        driver.get("https://demo.guru99.com/test/simple_context_menu.html");
+        WebElement doubleClickButton = driver.findElement(By.xpath("//button[text()='Double-Click Me To See Alert']"));
+        Actions action = new Actions(driver);
+        action.doubleClick(doubleClickButton).build().perform();
+        Alert alert = driver.switchTo().alert();
+        String alertText = alert.getText();
+        System.out.println(alertText);
+        alert.accept();
+    }
+    @Test
+    public void verifyDragAndDrop() {
+        driver.get("https://demoqa.com/droppable");
+        WebElement dragButton= driver.findElement(By.id("draggable"));
+        WebElement dropButton=driver.findElement(By.id("droppable"));
+        Actions action=new Actions(driver);
+        action.dragAndDrop(dragButton,dropButton).build().perform();
+
+    }
+    @Test
+    public void dragAndDropByOffset() {
+        driver.get("https://demoqa.com/dragabble");
+        WebElement dragBox= driver.findElement(By.id("dragBox"));
+        Actions action=new Actions(driver);
+        action.dragAndDropBy(dragBox,150,150).build().perform();
+    }
+    @Test
+    public void verifyMouseOver() {
+        driver.get("https://demoqa.com/menu/");
+        WebElement selectItemButton= driver.findElement(By.xpath("//a[text()='Main Item 2']"));
+        Actions action=new Actions(driver);
+        action.moveToElement(selectItemButton).build().perform();
+        WebElement subListButton= driver.findElement(By.xpath("//a[text()='SUB SUB LIST »']"));
+        action.moveToElement(subListButton).build().perform();
+    }
 
 }
 
