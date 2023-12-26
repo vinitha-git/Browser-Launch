@@ -32,8 +32,7 @@ public class ExcelUtility {
     }
 
     public static void main(String[] args) throws IOException {
-        //System.out.println(ExcelUtility.readStringData(1,0,"Login_Data"));
-        System.out.println(ExcelUtility.readData("C:\\Users\\VINITHA EDWIN\\IdeaProjects\\automation\\src\\main\\resources\\TestData.xlsx","LoginPage"));
+       System.out.println(ExcelUtility.readData("C:\\Users\\VINITHA EDWIN\\IdeaProjects\\automation\\src\\main\\resources\\TestData.xlsx","LoginPage"));
 
     }
 }
