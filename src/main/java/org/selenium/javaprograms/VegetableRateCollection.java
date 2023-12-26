@@ -1,4 +1,4 @@
-package org.selenium.basics;
+package org.selenium.javaprograms;
 import java.util.HashMap;
 import java.util.Map;
 

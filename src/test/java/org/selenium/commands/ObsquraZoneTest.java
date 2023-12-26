@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObsquraZoneTest extends Base{
+public class ObsquraZoneTest extends BrowserLaunch {
 
     @Test
     public void verifySingleInputField(){
