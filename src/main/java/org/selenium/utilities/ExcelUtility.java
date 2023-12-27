@@ -21,7 +21,7 @@ public class ExcelUtility {
         sh= wb.getSheet(sheet);
         ArrayList<String>excelRows=new ArrayList<>();
         int rowCount=sh.getLastRowNum()- sh.getFirstRowNum();
-        for(int i=0;i<rowCount;i++){
+        for(int i=0;i<=rowCount;i++){
             Row row=sh.getRow(i);
             int cellCount = row.getLastCellNum();
             for(int j=0;j<cellCount;j++){
@@ -31,8 +31,9 @@ public class ExcelUtility {
         return excelRows;
     }
 
-    public static void main(String[] args) throws IOException {
+   /* public static void main(String[] args) throws IOException {
+
        System.out.println(ExcelUtility.readData("C:\\Users\\VINITHA EDWIN\\IdeaProjects\\automation\\src\\main\\resources\\TestData.xlsx","LoginPage"));
 
-    }
+    }*/
 }

@@ -4,18 +4,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.selenium.automationcore.Base;
+import org.selenium.constants.Constants;
+import org.selenium.utilities.ExcelUtility;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageTest extends Base {
     @Test
-    public void verifyHomePageTitle() {
+    public void verifyHomePageTitle() throws IOException {
         String actualResult = driver.getTitle();
-        String expectedResult = "Demo Web Shop";
+        ArrayList<String> data = ExcelUtility.readData(Constants.TEST_DATA_EXCEL_PATH, Constants.HOME_PAGE);
+        String expectedResult=data.get(1);
         Assert.assertEquals(actualResult, expectedResult, "Invalid title");
-
     }
 
     @Test
