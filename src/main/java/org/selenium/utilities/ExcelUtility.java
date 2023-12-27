@@ -15,31 +15,37 @@ public class ExcelUtility {
     public static XSSFWorkbook wb;
     public static XSSFSheet sh;
 
-    public static ArrayList<String> readData(String file_path, String sheet) {
-        try {
-            file = new FileInputStream(file_path);
-            wb = new XSSFWorkbook(file);
-            sh = wb.getSheet(sheet);
-            ArrayList<String> excelRows = new ArrayList<>();
-            int rowCount = sh.getLastRowNum() - sh.getFirstRowNum();
-            for (int i = 0; i <= rowCount; i++) {
-                Row row = sh.getRow(i);
-                int cellCount = row.getLastCellNum();
-                for (int j = 0; j < cellCount; j++) {
-                    excelRows.add(row.getCell(j).getStringCellValue());
-                }
+        public static ArrayList<String>readData(String file_path,String sheet){
+       try {
+           file = new FileInputStream(file_path);
+       }
+       catch(FileNotFoundException ex)
+       {
+           throw new RuntimeException(ex);
+       }
+       try {
+           wb = new XSSFWorkbook(file);
+       }
+       catch( IOException ex)
+       {
+           throw new RuntimeException(ex);
+       }
+        sh= wb.getSheet(sheet);
+        ArrayList<String>excelRows=new ArrayList<>();
+        int rowCount=sh.getLastRowNum()- sh.getFirstRowNum();
+        for(int i=0;i<=rowCount;i++){
+            Row row=sh.getRow(i);
+            int cellCount = row.getLastCellNum();
+            for(int j=0;j<cellCount;j++){
+                excelRows.add(row.getCell(j).getStringCellValue());
             }
-            return excelRows;
         }
-        catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return null;
+        return excelRows;
     }
-}
+
    /* public static void main(String[] args) throws IOException {
 
        System.out.println(ExcelUtility.readData("C:\\Users\\VINITHA EDWIN\\IdeaProjects\\automation\\src\\main\\resources\\TestData.xlsx","LoginPage"));
 
     }*/
-
+}

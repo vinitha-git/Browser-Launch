@@ -40,7 +40,7 @@ public class Base {
         if(result.getStatus()==ITestResult.FAILURE) {
             takeScreenshot(result);
         }
-        driver.close();
+        driver.quit();
     }
     public void takeScreenshot(ITestResult result) throws IOException {
         TakesScreenshot takesScreenshot=(TakesScreenshot) driver;

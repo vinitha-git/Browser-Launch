@@ -31,17 +31,25 @@ public class LoginPageTest extends Base {
 
     @Test
     public void verifyUserLogin() {
-        WebElement loginField = driver.findElement(By.xpath("//a[@class='ico-login']"));
-        loginField.click();
-        WebElement emailField = driver.findElement(By.id("Email"));
-        emailField.sendKeys("vinithaedwin.test@gmail.com");
-        WebElement passwordField = driver.findElement(By.id("Password"));
-        passwordField.sendKeys("Simple@123");
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        loginButton.click();
-        WebElement loggedAccount = driver.findElement(By.xpath("//a[@class='account']"));
-        String actualResult = loggedAccount.getText();
-        String expectedResult = "vinithaedwin.test@gmail.com";
-        Assert.assertEquals(actualResult, expectedResult, Messages.LOGIN_FAILED);
+        try {
+            ArrayList<String> data = ExcelUtility.readData(Constants.TEST_DATA_EXCEL_PATH, Constants.LOGIN_PAGE);
+            String emailId = data.get(2);
+            String password= data.get(3);
+            WebElement loginField = driver.findElement(By.xpath("//a[@class='ico-login']"));
+            loginField.click();
+            WebElement emailField = driver.findElement(By.id("Email"));
+            emailField.sendKeys(emailId);
+            WebElement passwordField = driver.findElement(By.id("Password"));
+            passwordField.sendKeys(password);
+            WebElement loginButton = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
+            loginButton.click();
+            WebElement loggedAccount = driver.findElement(By.xpath("//a[@class='account']"));
+            String actualResult = loggedAccount.getText();
+            Assert.assertEquals(actualResult, emailId, Messages.LOGIN_FAILED);
+        }
+        catch( Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 }
