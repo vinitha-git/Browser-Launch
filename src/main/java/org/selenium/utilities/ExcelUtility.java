@@ -15,25 +15,31 @@ public class ExcelUtility {
     public static XSSFWorkbook wb;
     public static XSSFSheet sh;
 
-        public static ArrayList<String>readData(String file_path,String sheet) throws IOException {
-        file=new FileInputStream(file_path);
-        wb=new XSSFWorkbook(file);
-        sh= wb.getSheet(sheet);
-        ArrayList<String>excelRows=new ArrayList<>();
-        int rowCount=sh.getLastRowNum()- sh.getFirstRowNum();
-        for(int i=0;i<=rowCount;i++){
-            Row row=sh.getRow(i);
-            int cellCount = row.getLastCellNum();
-            for(int j=0;j<cellCount;j++){
-                excelRows.add(row.getCell(j).getStringCellValue());
+    public static ArrayList<String> readData(String file_path, String sheet) {
+        try {
+            file = new FileInputStream(file_path);
+            wb = new XSSFWorkbook(file);
+            sh = wb.getSheet(sheet);
+            ArrayList<String> excelRows = new ArrayList<>();
+            int rowCount = sh.getLastRowNum() - sh.getFirstRowNum();
+            for (int i = 0; i <= rowCount; i++) {
+                Row row = sh.getRow(i);
+                int cellCount = row.getLastCellNum();
+                for (int j = 0; j < cellCount; j++) {
+                    excelRows.add(row.getCell(j).getStringCellValue());
+                }
             }
+            return excelRows;
         }
-        return excelRows;
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
-
+}
    /* public static void main(String[] args) throws IOException {
 
        System.out.println(ExcelUtility.readData("C:\\Users\\VINITHA EDWIN\\IdeaProjects\\automation\\src\\main\\resources\\TestData.xlsx","LoginPage"));
 
     }*/
-}
+

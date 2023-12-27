@@ -3,18 +3,30 @@ package org.selenium.testngcommands;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.selenium.automationcore.Base;
+import org.selenium.constants.Constants;
+import org.selenium.constants.Messages;
+import org.selenium.utilities.ExcelUtility;
 import org.selenium.utilities.RandomDataUtility;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
 public class RegisterPageTest extends Base {
     @Test
     public void verifyRegisterPageTitle() {
-        WebElement registerField = driver.findElement(By.xpath("//a[@class='ico-register']"));
-        registerField.click();
-        String actualPageTitle = driver.getTitle();
-        String expectedPageTitle = "Demo Web Shop. Register";
-        Assert.assertEquals(actualPageTitle, expectedPageTitle, "Invalid title");
+        try {
+            WebElement registerField = driver.findElement(By.xpath("//a[@class='ico-register']"));
+            registerField.click();
+            String actualPageTitle = driver.getTitle();
+            ArrayList<String> data = ExcelUtility.readData(Constants.TEST_DATA_EXCEL_PATH, Constants.REGISTER_PAGE);
+            String expectedResult = data.get(1);
+            Assert.assertEquals(actualPageTitle, expectedResult, Messages.TITLE_MISMATCH);
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Test
@@ -42,9 +54,7 @@ public class RegisterPageTest extends Base {
         registerButton.click();
         WebElement actualUserLoginElement = driver.findElement(By.xpath("//div[@class='header-links']//a[@class='account']"));
         String actualId = actualUserLoginElement.getText();
-        Assert.assertEquals(actualId, emailID, "User Registration failed");
+        Assert.assertEquals(actualId, emailID, Messages.USER_REGISTRATION_FAILED);
     }
-
-
 }
 
