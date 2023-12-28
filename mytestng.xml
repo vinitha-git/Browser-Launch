@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Functional Test Suite">
+    <test  name="Regression Test">
+        <classes>
+           <class name="org.selenium.testngcommands.HomePageTest">
+                <methods>
+                    <exclude name="verifyHomePageTitle"/>
+                    <include name="verifyCommunityPollSelection"/>
+                </methods>
+            </class>
+            <class name="org.selenium.testngcommands.LoginPageTest">
+                <methods>
+                    <include name="verifyLoginPageTitle"/>
+                    <include name="verifyUserLogin"/>
+                </methods>
+            </class>
+            <class name="org.selenium.testngcommands.RegisterPageTest">
+                <methods>
+                    <include name="verifyRegisterPageTitle"/>
+                    <include name="verifyUserRegistration"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test  name="Smoke Test">
+        <classes>
+            <class name="org.selenium.testngcommands.LoginPageTest">
+                <methods>
+                    <include name="verifyLoginPageTitle"/>
+                    <include name="verifyUserLogin"/>
+                    <include name="verifyUserLoginWithInvalidCredentials"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

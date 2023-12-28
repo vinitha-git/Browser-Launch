@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<meta charset='utf-8'>
+<title>TestNG Report</title>
+<style type="text/css">
+table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}
+td,th {border:1px solid #009;padding:.25em .5em}
+.result th {vertical-align:bottom}
+.param th {padding-left:1em;padding-right:1em}
+.param td {padding-left:.5em;padding-right:2em}
+.stripe td,.stripe th {background-color: #E6EBF9}
+.numi,.numi_attn {text-align:right}
+.total td {font-weight:bold}
+.passedodd td {background-color: #0A0}
+.passedeven td {background-color: #3F3}
+.skippedodd td {background-color: #CCC}
+.skippedodd td {background-color: #DDD}
+.failedodd td,.numi_attn {background-color: #F33}
+.failedeven td,.stripe .numi_attn {background-color: #D00}
+.stacktrace {white-space:pre;font-family:monospace}
+.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}
+</style>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0" class="testOverview">
+<tr><th>Test</th><th>Methods<br/>Passed</th><th>Scenarios<br/>Passed</th><th># skipped</th><th># failed</th><th>Total<br/>Time</th><th>Included<br/>Groups</th><th>Excluded<br/>Groups</th></tr>
+<tr><td style="text-align:left;padding-right:2em"><a href="#t1">Regression Test</a></td><td class="numi">5</td><td class="numi">5</td><td class="numi">0</td><td class="numi">0</td><td class="numi">37.8 seconds</td><td class="numi"></td><td class="numi"></td></tr>
+<tr class="stripe"><td style="text-align:left;padding-right:2em"><a href="#t2">Smoke Test</a></td><td class="numi">3</td><td class="numi">3</td><td class="numi">0</td><td class="numi">0</td><td class="numi">21.6 seconds</td><td class="numi"></td><td class="numi"></td></tr>
+<tr class="total"><td>Total</td>
+<td class="numi">8</td><td class="numi">8</td><td class="numi">0</td><td class="numi">0</td><td class="numi">59.4 seconds</td><td colspan="2">&nbsp;</td></tr>
+</table>
+<table cellspacing="0" cellpadding="0" class="methodOverview" id="summary">
+<tr><th>Class</th><th>Method</th><th># of<br/>Scenarios</th><th>Start</th><th>Time<br/>(ms)</th></tr>
+<tr id="t1"><th colspan="5">Regression Test &#8212; passed</th></tr>
+<tr class="passedodd"><td>org.selenium.testngcommands.RegisterPageTest</td><td><a href="#m1"><b>verifyUserRegistration</b>  </a></td><td class="numi">1</td><td>1703768513343</td><td class="numi">3801</td></tr>
+<tr class="passedeven"><td>org.selenium.testngcommands.LoginPageTest</td><td><a href="#m2"><b>verifyUserLogin</b>  </a></td><td class="numi">1</td><td>1703768497885</td><td class="numi">4609</td></tr>
+<tr class="passedodd"><td>org.selenium.testngcommands.RegisterPageTest</td><td><a href="#m3"><b>verifyRegisterPageTitle</b>  </a></td><td class="numi">1</td><td>1703768507926</td><td class="numi">647</td></tr>
+<tr class="passedeven"><td>org.selenium.testngcommands.HomePageTest</td><td><a href="#m4"><b>verifyCommunityPollSelection</b>  </a></td><td class="numi">1</td><td>1703768487049</td><td class="numi">266</td></tr>
+<tr class="passedodd"><td>org.selenium.testngcommands.LoginPageTest</td><td><a href="#m5"><b>verifyLoginPageTitle</b>  </a></td><td class="numi">1</td><td>1703768491070</td><td class="numi">3985</td></tr>
+<tr id="t2"><th colspan="5">Smoke Test &#8212; passed</th></tr>
+<tr class="passedodd"><td rowspan="3">org.selenium.testngcommands.LoginPageTest</td><td><a href="#m6"><b>verifyLoginPageTitle</b>  </a></td><td class="numi">1</td><td>1703768522881</td><td class="numi">785</td></tr><tr class="passedodd"><td><a href="#m7"><b>verifyUserLogin</b>  </a></td><td class="numi">1</td><td>1703768528896</td><td class="numi">2232</td></tr><tr class="passedodd"><td><a href="#m8"><b>verifyUserLoginWithInvalidCredentials</b>  </a></td><td class="numi">1</td><td>1703768536912</td><td class="numi">1809</td></tr>
+</table>
+<h1>Regression Test</h1>
+<h2 id="m1">org.selenium.testngcommands.RegisterPageTest:verifyUserRegistration</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<h2 id="m2">org.selenium.testngcommands.RegisterPageTest:verifyRegisterPageTitle</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<h2 id="m3">org.selenium.testngcommands.LoginPageTest:verifyUserLogin</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<h2 id="m4">org.selenium.testngcommands.HomePageTest:verifyCommunityPollSelection</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<h2 id="m5">org.selenium.testngcommands.LoginPageTest:verifyLoginPageTitle</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<h1>Smoke Test</h1>
+<h2 id="m6">org.selenium.testngcommands.LoginPageTest:verifyLoginPageTitle</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<h2 id="m7">org.selenium.testngcommands.LoginPageTest:verifyUserLogin</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<h2 id="m8">org.selenium.testngcommands.LoginPageTest:verifyUserLoginWithInvalidCredentials</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+</body></html>
