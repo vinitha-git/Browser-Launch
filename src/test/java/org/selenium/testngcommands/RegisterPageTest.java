@@ -1,5 +1,4 @@
 package org.selenium.testngcommands;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.selenium.automationcore.Base;
@@ -9,24 +8,17 @@ import org.selenium.utilities.ExcelUtility;
 import org.selenium.utilities.RandomDataUtility;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.ArrayList;
 
 public class RegisterPageTest extends Base {
     @Test
     public void verifyRegisterPageTitle() {
-        try {
             WebElement registerField = driver.findElement(By.xpath("//a[@class='ico-register']"));
             registerField.click();
             String actualPageTitle = driver.getTitle();
             ArrayList<String> data = ExcelUtility.readData(Constants.TEST_DATA_EXCEL_PATH, Constants.REGISTER_PAGE);
             String expectedResult = data.get(1);
             Assert.assertEquals(actualPageTitle, expectedResult, Messages.TITLE_MISMATCH);
-        }
-        catch(Exception ex)
-        {
-            System.out.println(ex.getMessage());
-        }
     }
 
     @Test

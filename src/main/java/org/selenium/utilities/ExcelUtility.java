@@ -1,10 +1,8 @@
 package org.selenium.utilities;
-        import org.apache.poi.ss.usermodel.Cell;
         import org.apache.poi.ss.usermodel.Row;
         import org.apache.poi.xssf.usermodel.XSSFSheet;
         import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-        import java.io.File;
+        import org.selenium.constants.Constants;
         import java.io.FileInputStream;
         import java.io.FileNotFoundException;
         import java.io.IOException;
@@ -17,7 +15,8 @@ public class ExcelUtility {
 
         public static ArrayList<String>readData(String file_path,String sheet){
        try {
-           file = new FileInputStream(file_path);
+           String path = Constants.HOME_DIRECTORY+file_path;
+           file = new FileInputStream(path);
        }
        catch(FileNotFoundException ex)
        {
@@ -42,10 +41,4 @@ public class ExcelUtility {
         }
         return excelRows;
     }
-
-   /* public static void main(String[] args) throws IOException {
-
-       System.out.println(ExcelUtility.readData("C:\\Users\\VINITHA EDWIN\\IdeaProjects\\automation\\src\\main\\resources\\TestData.xlsx","LoginPage"));
-
-    }*/
 }

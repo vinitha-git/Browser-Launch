@@ -1,5 +1,4 @@
 package org.selenium.utilities;
-
 import com.github.javafaker.Faker;
 
 public class RandomDataUtility {
