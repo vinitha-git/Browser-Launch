@@ -1,11 +1,11 @@
 package org.selenium.dataprovider;
 
 public class DataProviderIteratorable {
-    @org.testng.annotations.DataProvider(name="InvalidCredentials")
+    @org.testng.annotations.DataProvider(name="InvalidUserCredentials")
     public Object[][] userCredentialData()
     {
-        Object[][] data= new Object[3][3];
-        data[0][0]="vinithaedwin.test@gmail.com";
+        Object[][] data= new Object[3][2];
+        data[0][0]="vinitha.edwin.test@gmail.com";
         data[0][1]="Simple@123";
         data[1][0]="vinithaedwin.test123@gmail.com";
         data[1][1]="Simple@123";

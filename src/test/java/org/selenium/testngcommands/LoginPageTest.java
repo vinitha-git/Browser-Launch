@@ -4,6 +4,7 @@ package org.selenium.testngcommands;
         import org.selenium.automationcore.Base;
         import org.selenium.constants.Constants;
         import org.selenium.constants.Messages;
+        import org.selenium.dataprovider.DataProviderIteratorable;
         import org.selenium.utilities.ExcelUtility;
         import org.testng.Assert;
         import org.testng.annotations.Test;
@@ -37,22 +38,22 @@ public class LoginPageTest extends Base {
             loginButton.click();
             WebElement loggedAccount = driver.findElement(By.xpath("//a[@class='account']"));
             String actualResult = loggedAccount.getText();
-            Assert.assertEquals(actualResult, emailId, Messages.LOGIN_FAILED);
+            Assert.assertEquals(actualResult, emailId, Messages.LOGIN_FAILED_MESSAGE);
     }
-        @Test
-        public void verifyUserLoginWithInvalidCredentials(){
+        @Test(dataProvider = "InvalidUserCredentials", dataProviderClass = DataProviderIteratorable.class)
+        public void verifyUserLoginWithInvalidCredentials(String userName, String password){
                 WebElement loginField = driver.findElement(By.xpath("//a[@class='ico-login']"));
                 loginField.click();
                 WebElement emailField = driver.findElement(By.xpath("//input[@id='Email']"));
-                ArrayList<String> data = ExcelUtility.readData(Constants.TEST_DATA_EXCEL_PATH, Constants.LOGIN_PAGE);
-                emailField.sendKeys(data.get(4));
+               // ArrayList<String> data = ExcelUtility.readData(Constants.TEST_DATA_EXCEL_PATH, Constants.LOGIN_PAGE);
+                emailField.sendKeys(userName);
                 WebElement passwordField = driver.findElement(By.xpath("//input[@id='Password']"));
-                passwordField.sendKeys(data.get(5));
+                passwordField.sendKeys(password);
                 WebElement loginButton = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
                 loginButton.click();
                 WebElement actualMsgElement = driver.findElement(By.xpath("//span[text()='Login was unsuccessful. Please correct the errors and try again.']"));
                 String actualMsgText = actualMsgElement.getText();
-                String expectedMsgText = data.get(6);
-                Assert.assertEquals(actualMsgText,expectedMsgText,Messages.LOGIN_FAILED);
+                String expectedMsgText =Messages.LOGIN_UNSUCEESFUL;
+                Assert.assertEquals(actualMsgText,expectedMsgText,Messages.LOGIN_FAILED_MESSAGE);
         }
 }
