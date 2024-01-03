@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 
 public class RegisterPageTest extends Base {
-    @Test
+    @Test(priority = 3)
     public void verifyRegisterPageTitle() {
             WebElement registerField = driver.findElement(By.xpath("//a[@class='ico-register']"));
             registerField.click();
@@ -21,7 +21,7 @@ public class RegisterPageTest extends Base {
             Assert.assertEquals(actualPageTitle, expectedResult, Messages.TITLE_MISMATCH);
     }
 
-    @Test
+    @Test(priority = 4)
     public void verifyUserRegistration() {
         String firstName = RandomDataUtility.getFirstName();
         String lastName = RandomDataUtility.getLastName();

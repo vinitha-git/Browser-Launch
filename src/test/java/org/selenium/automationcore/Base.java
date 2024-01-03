@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +31,10 @@ public class Base {
         driver.manage().deleteAllCookies();
     }
     @BeforeMethod
-    public void setup() {
-        initializeBrowser("Chrome");
-        driver.get("https://demowebshop.tricentis.com/");
+    @Parameters({"browser","baseURL"})
+    public void setup(String browserName,String URL) {
+        initializeBrowser(browserName);
+        driver.get(URL);
     }
 
     @AfterMethod

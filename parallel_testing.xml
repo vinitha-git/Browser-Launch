@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Functional Test Suite">
+    <test name="HomePage Test">
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="baseURL" value="https://demowebshop.tricentis.com/"/>
+        <classes>
+            <class name="org.selenium.testngcommands.HomePageTest"/>
+        </classes>
+    </test>
+    <test name="RegisterPage Test" >
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="baseURL" value="https://demowebshop.tricentis.com/"/>
+        <classes>
+            <class name="org.selenium.testngcommands.RegisterPageTest"/>
+        </classes>
+    </test>
+    <test name="LoginPage Test">
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="baseURL" value="https://demowebshop.tricentis.com/"/>
+        <classes>
+            <class name="org.selenium.testngcommands.LoginPageTest"/>
+        </classes>
+    </test>
+</suite>

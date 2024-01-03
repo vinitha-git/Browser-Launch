@@ -6,16 +6,8 @@
         <parameter name="baseURL" value="https://demowebshop.tricentis.com/"/>
         <classes>
            <class name="org.selenium.testngcommands.HomePageTest">
-                <methods>
-                    <exclude name="verifyHomePageTitle"/>
-                    <include name="verifyCommunityPollSelection"/>
-                </methods>
             </class>
              <class name="org.selenium.testngcommands.RegisterPageTest">
-                <methods>
-                    <include name="verifyRegisterPageTitle"/>
-                    <include name="verifyUserRegistration"/>
-                </methods>
             </class>
         </classes>
     </test>
@@ -24,11 +16,6 @@
         <parameter name="baseURL" value="https://demowebshop.tricentis.com/"/>
         <classes>
             <class name="org.selenium.testngcommands.LoginPageTest">
-                <methods>
-                    <include name="verifyLoginPageTitle"/>
-                    <include name="verifyUserLogin"/>
-                    <include name="verifyUserLoginWithInvalidCredentials"/>
-                </methods>
             </class>
         </classes>
     </test>

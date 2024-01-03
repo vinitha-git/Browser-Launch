@@ -11,7 +11,7 @@ package org.selenium.testngcommands;
         import java.util.ArrayList;
 
 public class LoginPageTest extends Base {
-    @Test
+    @Test(priority = 5)
     public void verifyLoginPageTitle() {
 
             WebElement loginField = driver.findElement(By.xpath("//a[@class='ico-login']"));
@@ -22,7 +22,7 @@ public class LoginPageTest extends Base {
             Assert.assertEquals(actualpageTitle, expectedResult, Messages.TITLE_MISMATCH);
     }
 
-    @Test
+    @Test(priority = 6)
     public void verifyUserLogin() {
 
             ArrayList<String> data = ExcelUtility.readData(Constants.TEST_DATA_EXCEL_PATH, Constants.LOGIN_PAGE);
@@ -40,7 +40,7 @@ public class LoginPageTest extends Base {
             String actualResult = loggedAccount.getText();
             Assert.assertEquals(actualResult, emailId, Messages.LOGIN_FAILED_MESSAGE);
     }
-        @Test(dataProvider = "InvalidUserCredentials", dataProviderClass = DataProviderIteratorable.class)
+        @Test(priority=7,dataProvider = "InvalidUserCredentials", dataProviderClass = DataProviderIteratorable.class)
         public void verifyUserLoginWithInvalidCredentials(String userName, String password){
                 WebElement loginField = driver.findElement(By.xpath("//a[@class='ico-login']"));
                 loginField.click();
