@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Functional Test Suite">
+    <listeners>
+        <listener class-name="org.selenium.listeners.ExtentListener"></listener>
+    </listeners>
+    <test  name="Regression Test">
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="baseURL" value="https://demowebshop.tricentis.com/"/>
+        <classes>
+           <class name="org.selenium.testngcommands.HomePageTest">
+            </class>
+             <class name="org.selenium.testngcommands.RegisterPageTest">
+            </class>
+            <class name="org.selenium.testngcommands.LoginPageTest">
+            </class>
+        </classes>
+    </test>
+
+</suite>

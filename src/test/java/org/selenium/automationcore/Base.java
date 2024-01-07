@@ -30,19 +30,19 @@ public class Base {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
     }
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     @Parameters({"browser","baseURL"})
     public void setup(String browserName,String URL) {
         initializeBrowser(browserName);
         driver.get(URL);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) throws IOException {
         if(result.getStatus()==ITestResult.FAILURE) {
             takeScreenshot(result);
         }
-        driver.quit();
+        driver.close();
     }
     public void takeScreenshot(ITestResult result) throws IOException {
         TakesScreenshot takesScreenshot=(TakesScreenshot) driver;

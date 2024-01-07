@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Functional Test Suite">
-    <test  name="Regression Test">
+<suite name="Functional Suite">
+    <test name="Regression Test">
         <parameter name="browser" value="Chrome"/>
         <parameter name="baseURL" value="https://demowebshop.tricentis.com/"/>
         <classes>
-           <class name="org.selenium.testngcommands.HomePageTest">
+            <class name="org.selenium.testngcommands.HomePageTest">
                 <methods>
-                    <exclude name="verifyHomePageTitle"/>
+                    <include name="verifyHomePageTitle"/>
                     <include name="verifyCommunityPollSelection"/>
                 </methods>
             </class>
-             <class name="org.selenium.testngcommands.RegisterPageTest">
+            <class name="org.selenium.testngcommands.RegisterPageTest">
                 <methods>
-                    <include name="verifyRegisterPageTitle"/>
-                    <include name="verifyUserRegistration"/>
+                    <exclude name="verifyRegisterPageTitle"/>
+                    <exclude name="verifyUserRegistration"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test  name="Smoke Test">
+    <test name="Smoke Test">
         <parameter name="browser" value="Chrome"/>
         <parameter name="baseURL" value="https://demowebshop.tricentis.com/"/>
         <classes>
             <class name="org.selenium.testngcommands.LoginPageTest">
                 <methods>
-                    <include name="verifyLoginPageTitle"/>
-                    <include name="verifyUserLogin"/>
-                    <include name="verifyUserLoginWithInvalidCredentials"/>
+                    <exclude name="verifyLoginPageTitle"/>
+                    <exclude name="verifyUserLogin"/>
+                    <include name="verifyUserLoginWithInvalidValidation"/>
                 </methods>
             </class>
         </classes>
